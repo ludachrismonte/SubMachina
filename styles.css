@@ -1,0 +1,51 @@
+body {
+	background-color: lightgray;
+}
+
+#header {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	padding: 8px;
+	height: 54px;
+	width: 100%;
+	background-color: black;
+	color: white;
+	font-size: 50px;
+}
+
+#content {
+	position: absolute;
+	top: 80px;
+	left: 0px;
+	width: 100%;
+}
+
+#header-title {
+	float: left;
+	padding-right: 50px;
+}
+
+#health-container {
+	float: left;
+}
+
+#health-image {
+	float: left;
+	height: 56px;
+	width: 56px;
+}
+
+.health-bar {
+	float: left;
+	height: 30px;
+	width: 80px;
+	margin: 12px 4px;
+	cursor: pointer;
+}
+.good {
+	background-color: green;
+}
+.bad {
+	background-color: red;
+}

@@ -1,0 +1,128 @@
+#engineer-pane {
+	position: relative;
+	width: 800px;
+	float: right;
+}
+
+#engineer-image {
+	width: 100%;
+}
+
+.engineer-box {
+	position: absolute;
+	height: 55px;
+	width: 55px;
+}
+
+.damaged {
+	background: url(images/x.png);
+  	background-size: 100%;
+}
+
+
+/* WEST */
+#eb-1 {
+	top: 83px;
+	left: 12px;
+}
+#eb-2 {
+	top: 83px;
+	left: 134px;
+}
+#eb-3 {
+	top: 150px;
+	left: 134px;
+}
+#eb-4 {
+	top: 235px;
+	left: 10px;
+}
+#eb-5 {
+	top: 235px;
+	left: 71px;
+}
+#eb-6 {
+	top: 235px;
+	left: 132px;
+}
+
+
+/* NORTH */
+#eb-7 {
+	top: 83px;
+	left: 208px;
+}
+#eb-8 {
+	top: 150px;
+	left: 208px;
+}
+#eb-9 {
+	top: 150px;
+	left: 332px;
+}
+#eb-10 {
+	top: 235px;
+	left: 208px;
+}
+#eb-11 {
+	top: 235px;
+	left: 270px;
+}
+#eb-12 {
+	top: 235px;
+	left: 332px;
+}
+
+
+/* SOUTH */
+#eb-13 {
+	top: 83px;
+	left: 408px;
+}
+#eb-14 {
+	top: 150px;
+	left: 408px;
+}
+#eb-15 {
+	top: 150px;
+	left: 530px;
+}
+#eb-16 {
+	top: 235px;
+	left: 408px;
+}
+#eb-17 {
+	top: 235px;
+	left: 469px;
+}
+#eb-18 {
+	top: 235px;
+	left: 530px;
+}
+
+
+/* EAST */
+#eb-19 {
+	top: 83px;
+	left: 608px;
+}
+#eb-20 {
+	top: 150px;
+	left: 608px;
+}
+#eb-21 {
+	top: 150px;
+	left: 729px;
+}
+#eb-22 {
+	top: 235px;
+	left: 605px;
+}
+#eb-23 {
+	top: 235px;
+	left: 668px;
+}
+#eb-24 {
+	top: 235px;
+	left: 729px;
+}
