@@ -17,7 +17,6 @@
   float: left;
 }
 .island {
-
 }
 .sea {
   cursor: pointer;
@@ -47,4 +46,12 @@
   float: left;
   background: url(images/dot.png);
   background-size: 100%;
+}
+#surface-button {
+  height: 20px;
+  width: 100px;
+  text-align: center;
+  padding: 20px;
+  background-color: lightblue;
+  border: 3px solid black;
 }

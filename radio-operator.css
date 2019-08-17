@@ -3,7 +3,7 @@
 }
 
 #radio-operator-trail {
-	pointer-events: none;
+	/*pointer-events: none;*/
 	position: absolute;
 	top: -270px;
 	left: -270px;

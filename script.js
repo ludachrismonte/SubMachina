@@ -2,12 +2,15 @@
 
 //~~~~~~~~~~~~~~~~~~~~~~ CAPTAIN ~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
+let num_cols = 15;
+let num_rows = 15;
+
 let alpha_islands = [17, 21, 27, 28, 32, 38, 42, 53, 91, 93, 96, 98, 106, 108, 111, 123, 127, 131, 132, 133, 153, 167, 172, 176, 180, 192, 197, 201, 203, 208, 213];
 
 let map =  document.getElementById('captain-map');
-for (let r = 0; r < 15; r++) {
+for (let r = 0; r < num_rows; r++) {
   map.innerHTML += '<tr>';
-  for (let c = 0; c < 15; c++) {
+  for (let c = 0; c < num_cols; c++) {
   	let id = r * 15 + c;
   	if (alpha_islands.includes(id)){
 		map.innerHTML += '<div class="checkbox island" id="box-' + id + '"></div>';
@@ -17,16 +20,28 @@ for (let r = 0; r < 15; r++) {
   map.innerHTML += '</tr>';
 }
 
+let cur_loc = -1;
+
 function check(i) {
 	let to_move_to = document.getElementById('box-' + i);
 	if (to_move_to.className === 'dot') {
 		return;
 	}
-	let items = document.getElementsByClassName('x');
-	for (let i = 0; i < items.length; i++) {
-		items[i].className = 'dot';
+	if (cur_loc === -1 || i === cur_loc + 1 || i === cur_loc - 1 || i === cur_loc + num_cols || i === cur_loc - num_cols) {
+		let items = document.getElementsByClassName('x');
+		for (let i = 0; i < items.length; i++) {
+			items[i].className = 'dot';
+		}
+		to_move_to.className = 'x';
+		cur_loc = i;
 	}
-	to_move_to.className = 'x';
+}
+
+function surface() {
+	let visited_spaces = document.getElementsByClassName('dot');
+	while (visited_spaces.length) {
+		visited_spaces[0].className = 'checkbox sea';
+	}
 }
 
 
@@ -44,10 +59,19 @@ for (let r = 0; r < radio_rows; r++) {
 	radio_map.innerHTML += '</tr>';
 }
 
-let current_row = Math.floor(radio_rows / 2);
-let current_col = Math.floor(radio_cols / 2);
+let current_row = -1;
+let current_col = -1;
+resetRadio();
 
-document.getElementById('radio-box-' + (current_row * radio_cols + current_col)).className = 'radio-box radio-visited';
+function resetRadio() {
+	let visited_spaces = document.getElementsByClassName('radio-box radio-visited');
+	while (visited_spaces.length) {
+		visited_spaces[0].className = 'radio-box radio-not-visited';
+	}
+	current_row = Math.floor(radio_rows / 2);
+	current_col = Math.floor(radio_cols / 2);
+	document.getElementById('radio-box-' + (current_row * radio_cols + current_col)).className = 'radio-box radio-visited';
+}
 
 function radioNorth() {
 	console.log("north");
@@ -73,6 +97,53 @@ function radioWest() {
 	document.getElementById('radio-box-' + (current_row * radio_cols + current_col)).className = 'radio-box radio-visited';
 }
 
+let trail = document.getElementById("radio-operator-trail");
+
+window.onkeypress = function(event) {
+	if (event.keyCode == 114) {
+		if (trail.style.pointerEvents === 'none') {
+			trail.style.pointerEvents = 'auto';
+		}
+		else trail.style.pointerEvents = 'none';
+	}
+}
+
+dragElement(document.getElementById("radio-operator-trail"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  elmnt.onmousedown = dragMouseDown;
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
 
 //~~~~~~~~~~~~~~~~~~~~~~ FIRST MATE  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
