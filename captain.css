@@ -16,6 +16,7 @@
   margin-right: 2px;
   float: left;
 }
+
 .island {
 }
 .sea {
@@ -29,25 +30,52 @@
 }
 
 .x {
-  height: 35px;
-  width: 35px;
-  margin-left: 2px;
-  margin-right: 2px;
-  float: left;
   background: url(images/x.png);
   background-size: 100%;
 }
 
-.dot {
-  height: 35px;
-  width: 35px;
-  margin-left: 2px;
-  margin-right: 2px;
-  float: left;
-  background: url(images/dot.png);
+.north-south {
+  background: url(images/north-south.png);
   background-size: 100%;
 }
-#surface-button {
+
+.east-west {
+  background: url(images/east-west.png);
+  background-size: 100%;
+}
+
+.north-east {
+  background: url(images/north-east.png);
+  background-size: 100%;
+}
+
+.north-west {
+  background: url(images/north-west.png);
+  background-size: 100%;
+}
+
+.south-east {
+  background: url(images/south-east.png);
+  background-size: 100%;
+}
+
+.south-west {
+  background: url(images/south-west.png);
+  background-size: 100%;
+}
+
+.mine {
+  background: url(images/mine-icon.png);
+  background-size: 100%;
+}
+
+.explosion {
+  background: url(images/explosion.png);
+  background-size: 100%;
+}
+
+.map-control-button {
+  float: left;
   height: 20px;
   width: 100px;
   text-align: center;

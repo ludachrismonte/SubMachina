@@ -30,8 +30,10 @@
     <div id="captain-pane">
       <table id="captain-map">
       </table>
-      <div id="surface-button" onclick="surface()">SURFACE!</div>
-      <div id="surface-button" onclick="resetRadio()">Reset Radio</div>
+      <div class="map-control-button" onclick="surface()">SURFACE!</div>
+      <div class="map-control-button" onclick="resetRadio()">Reset Radio</div>
+      <div class="map-control-button" onclick="undoPath()">Undo</div>
+      <div class="map-control-button" onclick="enableMine()">Enable Mine</div>
     </div>
 
     <div id="first-mate-pane">
@@ -87,10 +89,10 @@
         </table>
       </div>
       <div id="radio-operator-controls">
-        <img id="radio-north" src="images/health.png" onclick="radioNorth()">
-        <img id="radio-east" src="images/health.png" onclick="radioEast()">
-        <img id="radio-south" src="images/health.png" onclick="radioSouth()">
-        <img id="radio-west" src="images/health.png" onclick="radioWest()">
+        <img id="radio-north" src="images/health.png" onclick="radioMove('north')">
+        <img id="radio-east" src="images/health.png" onclick="radioMove('east')">
+        <img id="radio-south" src="images/health.png" onclick="radioMove('south')">
+        <img id="radio-west" src="images/health.png" onclick="radioMove('west')">
       </div>
     </div>
 

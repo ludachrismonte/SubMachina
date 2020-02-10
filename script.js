@@ -20,27 +20,111 @@ for (let r = 0; r < num_rows; r++) {
   map.innerHTML += '</tr>';
 }
 
-let cur_loc = -1;
+let path = [];
+let previous_direction = "";
+let mine_enabled = false;
 
-function check(i) {
-	let to_move_to = document.getElementById('box-' + i);
-	if (to_move_to.className === 'dot') {
+function check(dest_id) {
+	let dest = document.getElementById('box-' + dest_id);
+	if (dest.className === 'checkbox mine') {
+		detonateMine(dest_id);
 		return;
 	}
-	if (cur_loc === -1 || i === cur_loc + 1 || i === cur_loc - 1 || i === cur_loc + num_cols || i === cur_loc - num_cols) {
-		let items = document.getElementsByClassName('x');
-		for (let i = 0; i < items.length; i++) {
-			items[i].className = 'dot';
+	if (mine_enabled) {
+		dropMine(dest_id);
+		return;
+	}
+	if (dest.className !== 'checkbox sea') {
+		return;
+	}
+	if (path.length === 0) {
+		dest.className = 'checkbox x';
+		path.push(dest_id);
+		return;
+	}
+	cur_loc = path[path.length - 1];
+
+	requested_dir = "";
+	if (dest_id === cur_loc + 1) { requested_dir = "east"; }
+	else if (dest_id === cur_loc - 1) { requested_dir = "west"; }
+	else if (dest_id === cur_loc + num_cols) { requested_dir = "south"; }
+	else if (dest_id === cur_loc - num_cols) { requested_dir = "north"; }
+	if (requested_dir === "") {
+		return;
+	}
+
+	if ((previous_direction === "" && (requested_dir === "east" || requested_dir === "west"))
+	 || (previous_direction === "east" && requested_dir === "east")
+	 || (previous_direction === "west" && requested_dir === "west")) {
+		document.getElementById('box-' + cur_loc).className = 'checkbox east-west';
+	}
+	if ((previous_direction === "" && (requested_dir === "south" || requested_dir === "north"))
+	 || (previous_direction === "south" && requested_dir === "south")
+	 || (previous_direction === "north" && requested_dir === "north")) {
+		document.getElementById('box-' + cur_loc).className = 'checkbox north-south';
+	}
+	if ((previous_direction === "east" && requested_dir === "north")
+	 || (previous_direction === "south" && requested_dir === "west")) {
+		document.getElementById('box-' + cur_loc).className = 'checkbox north-west';
+	}
+	if ((previous_direction === "south" && requested_dir === "east")
+	 || (previous_direction === "west" && requested_dir === "north")) {
+		document.getElementById('box-' + cur_loc).className = 'checkbox north-east';
+	}
+	if ((previous_direction === "east" && requested_dir === "south")
+	 || (previous_direction === "north" && requested_dir === "west")) {
+		document.getElementById('box-' + cur_loc).className = 'checkbox south-west';
+	}
+	if ((previous_direction === "north" && requested_dir === "east")
+	 || (previous_direction === "west" && requested_dir === "south")) {
+		document.getElementById('box-' + cur_loc).className = 'checkbox south-east';
+	}
+	dest.className = 'checkbox x';
+	path.push(dest_id);
+	previous_direction = requested_dir;
+}
+
+function enableMine() {
+	mine_enabled = true;
+}
+
+function dropMine(dest_id) {
+	if (path.length) {
+		let okay_differences = [1, -1, num_cols, num_cols + 1, num_cols - 1, -num_cols, -num_cols + 1, -num_cols - 1];
+		if (okay_differences.includes(dest_id - path[path.length - 1])) {
+			document.getElementById('box-' + dest_id).className = 'checkbox mine';
+			mine_enabled = false;
 		}
-		to_move_to.className = 'x';
-		cur_loc = i;
 	}
 }
 
+function detonateMine(dest_id) {
+	document.getElementById('box-' + dest_id).className = 'checkbox explosion';
+	setTimeout(function(){ document.getElementById('box-' + dest_id).className = 'checkbox sea'; }, 400);
+}
+
 function surface() {
-	let visited_spaces = document.getElementsByClassName('dot');
-	while (visited_spaces.length) {
-		visited_spaces[0].className = 'checkbox sea';
+	previous_direction = "";
+	while (path.length > 1) {
+		let to_clear = document.getElementById('box-' + path.shift());
+		to_clear.className = 'checkbox sea';
+	}
+}
+
+function undoPath() {
+	if (path.length) {
+		let to_undo = path.pop();
+		document.getElementById('box-' + to_undo).className = 'checkbox sea';
+		if (path.length) {
+			document.getElementById('box-' + path[path.length -1]).className = 'checkbox x';
+			if (path.length > 1) {
+				if (path[path.length - 1] === path[path.length - 2] + 1) { previous_direction = "east"; }
+				else if (path[path.length - 1] === path[path.length - 2] - 1) { previous_direction = "west"; }
+				else if (path[path.length - 1] === path[path.length - 2] + num_cols) { previous_direction = "south"; }
+				else if (path[path.length - 1] === path[path.length - 2] - num_cols) { previous_direction = "north"; }
+			}
+			else previous_direction = "";
+		}
 	}
 }
 
@@ -50,51 +134,72 @@ function surface() {
 let radio_cols = 29;
 let radio_rows = 29;
 
-let radio_map =  document.getElementById('radio-operator-grid');
+let radio_map = document.getElementById('radio-operator-grid');
 for (let r = 0; r < radio_rows; r++) {
 	radio_map.innerHTML += '<tr>';
-		for (let c = 0; c < radio_cols; c++) {
-			radio_map.innerHTML += '<div class="radio-box radio-not-visited" id="radio-box-' + (r * radio_cols + c) + '"></div>';
-		}
+	for (let c = 0; c < radio_cols; c++) {
+		radio_map.innerHTML += '<div class="radio-box radio-not-visited" id="radio-box-' + (r * radio_cols + c) + '"></div>';
+	}
 	radio_map.innerHTML += '</tr>';
 }
 
-let current_row = -1;
-let current_col = -1;
+let enemy_path = [];
+let previous_direction_enemy = "";
+
 resetRadio();
 
 function resetRadio() {
-	let visited_spaces = document.getElementsByClassName('radio-box radio-visited');
-	while (visited_spaces.length) {
-		visited_spaces[0].className = 'radio-box radio-not-visited';
+	previous_direction_enemy = "";
+	while (enemy_path.length > 1) {
+		enemy_path.pop();
 	}
-	current_row = Math.floor(radio_rows / 2);
-	current_col = Math.floor(radio_cols / 2);
-	document.getElementById('radio-box-' + (current_row * radio_cols + current_col)).className = 'radio-box radio-visited';
+	for (let i = 0; i < radio_rows * radio_cols; i++) {
+		document.getElementById('radio-box-' + i).className = 'radio-box radio-not-visited';
+	}
+	start_id = (Math.floor(radio_rows / 2) * radio_cols + Math.floor(radio_cols / 2));
+	document.getElementById('radio-box-' + start_id).className = 'radio-box radio-enemy-x';
+	enemy_path.push(start_id);
 }
 
-function radioNorth() {
-	console.log("north");
-	current_row--;
-	document.getElementById('radio-box-' + (current_row * radio_cols + current_col)).className = 'radio-box radio-visited';
-}
-
-function radioEast() {
-	console.log("east");
-	current_col++;
-	document.getElementById('radio-box-' + (current_row * radio_cols + current_col)).className = 'radio-box radio-visited';
-}
-
-function radioSouth() {
-	console.log("south");
-	current_row++;
-	document.getElementById('radio-box-' + (current_row * radio_cols + current_col)).className = 'radio-box radio-visited';
-}
-
-function radioWest() {
-	console.log("west");
-	current_col--;
-	document.getElementById('radio-box-' + (current_row * radio_cols + current_col)).className = 'radio-box radio-visited';
+function radioMove(requested_dir) {
+	let current_id = enemy_path[enemy_path.length - 1];
+	let new_id = -1;
+	if (requested_dir === "north") { new_id = current_id - radio_cols; }
+	else if (requested_dir === "east") { new_id = current_id + 1; }
+	else if (requested_dir === "south") { new_id = current_id + radio_cols; }
+	else if (requested_dir === "west") { new_id = current_id - 1; }
+	if (enemy_path.includes(new_id)){
+		return;
+	}
+	if ((previous_direction_enemy === "" && (requested_dir === "east" || requested_dir === "west"))
+	 || (previous_direction_enemy === "east" && requested_dir === "east")
+	 || (previous_direction_enemy === "west" && requested_dir === "west")) {
+		document.getElementById('radio-box-' + current_id).className = 'radio-box radio-east-west';
+	}
+	else if ((previous_direction_enemy === "" && (requested_dir === "south" || requested_dir === "north"))
+	 || (previous_direction_enemy === "south" && requested_dir === "south")
+	 || (previous_direction_enemy === "north" && requested_dir === "north")) {
+		document.getElementById('radio-box-' + current_id).className = 'radio-box radio-north-south';
+	}
+	else if ((previous_direction_enemy === "east" && requested_dir === "north")
+	 || (previous_direction_enemy === "south" && requested_dir === "west")) {
+		document.getElementById('radio-box-' + current_id).className = 'radio-box radio-north-west';
+	}
+	else if ((previous_direction_enemy === "south" && requested_dir === "east")
+	 || (previous_direction_enemy === "west" && requested_dir === "north")) {
+		document.getElementById('radio-box-' + current_id).className = 'radio-box radio-north-east';
+	}
+	else if ((previous_direction_enemy === "east" && requested_dir === "south")
+	 || (previous_direction_enemy === "north" && requested_dir === "west")) {
+		document.getElementById('radio-box-' + current_id).className = 'radio-box radio-south-west';
+	}
+	else if ((previous_direction_enemy === "north" && requested_dir === "east")
+	 || (previous_direction_enemy === "west" && requested_dir === "south")) {
+		document.getElementById('radio-box-' + current_id).className = 'radio-box radio-south-east';
+	}
+	document.getElementById('radio-box-' + new_id).className = 'radio-box radio-enemy-x';
+	previous_direction_enemy = requested_dir;
+	enemy_path.push(new_id);
 }
 
 let trail = document.getElementById("radio-operator-trail");

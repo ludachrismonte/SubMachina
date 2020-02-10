@@ -11,22 +11,47 @@
 	z-index: 10;
 }
 
+
 .radio-box {
 	height: 35px;
 	width: 35px;
 	margin-left: 2px;
 	margin-right: 2px;
 	float: left;
-	background-color: black;
 }
-
-.radio-visited {
-	opacity: .6;
-}
-
 .radio-not-visited {
 	opacity: 0;
 }
+.radio-enemy-x {
+	background: url(images/red-x.png);
+	background-size: 100%;
+}
+.radio-north-south {
+	background: url(images/north-south-enemy.png);
+	background-size: 100%;
+}
+.radio-east-west {
+	background: url(images/east-west-enemy.png);
+	background-size: 100%;
+}
+.radio-north-east {
+	background: url(images/north-east-enemy.png);
+	background-size: 100%;
+}
+.radio-north-west {
+	background: url(images/north-west-enemy.png);
+	background-size: 100%;
+}
+.radio-south-east {
+	background: url(images/south-east-enemy.png);
+	background-size: 100%;
+}
+.radio-south-west {
+	background: url(images/south-west-enemy.png);
+	background-size: 100%;
+}
+
+
 
 #radio-operator-controls {
 	position: relative;
@@ -36,28 +61,24 @@
 	border: 2px solid black;
 	background-color: gray;
 }
-
 #radio-north {
 	position: absolute;
 	top: 0;
 	left: 30%;
 	width: 40%;
 }
-
 #radio-east {
 	position: absolute;
 	top: 30%;
 	left: 60%;
 	width: 40%;
 }
-
 #radio-south {
 	position: absolute;
 	top: 60%;
 	left: 30%;
 	width: 40%;
 }
-
 #radio-west {
 	position: absolute;
 	top: 30%;
