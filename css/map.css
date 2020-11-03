@@ -1,0 +1,28 @@
+.map-graphic {
+  border: 2px solid black;
+  background: url(../images/alpha-map.png);
+  height: 100%;
+  background-size: 100%;
+} 
+
+.checkbox {
+  height: 35px;
+  width: 35px;
+  margin-left: 2px;
+  margin-right: 2px;
+  float: left;
+}
+
+.island {
+}
+
+.sea {
+  cursor: pointer;
+  background-color: #eee;
+  opacity: .2;
+}
+
+.sea:hover {
+  background-color: #ccc;
+  opacity: .2;
+}

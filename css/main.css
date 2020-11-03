@@ -1,0 +1,46 @@
+html {
+	font-family: 'Special Elite', cursive;
+}
+
+body {
+	padding: 0;
+	background-color: #444444;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+	cursor: pointer;
+}
+
+#header {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	height: 80px;
+	background-color: black;
+	color: white;
+	font-size: 50px;
+}
+
+#header-title {
+	float: left;
+	padding-top: 20px;
+	padding-left: 50px;
+}
+
+#content {
+	margin-top: 100px;
+	width: 70%;
+	height: calc(100vh - 80px);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.good {
+	background-color: green;
+}
+.bad {
+	background-color: red;
+}

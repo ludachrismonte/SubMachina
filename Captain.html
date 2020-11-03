@@ -6,16 +6,15 @@
       content="width=device-width, initial-scale=1"
       http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <title>SubMachina</title>
-    <link href="captain.css" rel="stylesheet" type="text/css"/>
-    <link href="first-mate.css" rel="stylesheet" type="text/css"/>
-    <link href="engineer.css" rel="stylesheet" type="text/css"/>
-    <link href="radio-operator.css" rel="stylesheet" type="text/css"/>
-    <link href="styles.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/map.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/captain.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <div id="header">
-    <div id="header-title">SubMachina</div>
+    <a href="./index.html"><div id="header-title">SubMachina</div></a>
     <div id="health-container">
       <img id="health-image" src="images/health.png">
       <div class="health-bar good" id="health-bar-1" onclick="toggleHealth(1)"></div>
@@ -28,14 +27,17 @@
   <div id="content">
 
     <div id="captain-pane">
-      <table id="captain-map">
-      </table>
+
+      <table class="clickable-map map-graphic"></table>
+
       <div class="map-control-button" onclick="surface()">SURFACE!</div>
       <div class="map-control-button" onclick="resetRadio()">Reset Radio</div>
       <div class="map-control-button" onclick="undoPath()">Undo</div>
       <div class="map-control-button" onclick="enableMine()">Enable Mine</div>
     </div>
 
+
+    <!--
     <div id="first-mate-pane">
       <div class="row">
         <img class="fm-image" src="images/torpedo.png" onclick="incrementTorpedoes()">
@@ -123,8 +125,10 @@
       <div class="engineer-box" id="eb-23" onclick="toggleEB(23)"></div>
       <div class="engineer-box" id="eb-24" onclick="toggleEB(24)"></div>
     </div>
+    -->
 
-    <script src="script.js" type="text/javascript"></script>
+    <script src="js/Map.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
 
   </div>
 

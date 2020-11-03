@@ -1,0 +1,79 @@
+
+#health-container {
+  float: right;
+  margin-top: 15px;
+  margin-right: 50px;
+}
+
+#health-image {
+  float: left;
+  height: 56px;
+  width: 56px;
+}
+
+.health-bar {
+  float: left;
+  height: 30px;
+  width: 80px;
+  margin: 12px 4px;
+  cursor: pointer;
+}
+
+#captain-pane {
+  float: left;
+}
+
+.x {
+  background: url(../images/x.png);
+  background-size: 100%;
+}
+
+.north-south {
+  background: url(../images/north-south.png);
+  background-size: 100%;
+}
+
+.east-west {
+  background: url(../images/east-west.png);
+  background-size: 100%;
+}
+
+.north-east {
+  background: url(../images/north-east.png);
+  background-size: 100%;
+}
+
+.north-west {
+  background: url(../images/north-west.png);
+  background-size: 100%;
+}
+
+.south-east {
+  background: url(../images/south-east.png);
+  background-size: 100%;
+}
+
+.south-west {
+  background: url(../images/south-west.png);
+  background-size: 100%;
+}
+
+.mine {
+  background: url(../images/mine-icon.png);
+  background-size: 100%;
+}
+
+.explosion {
+  background: url(../images/explosion.png);
+  background-size: 100%;
+}
+
+.map-control-button {
+  float: left;
+  height: 20px;
+  width: 100px;
+  text-align: center;
+  padding: 20px;
+  background-color: lightblue;
+  border: 3px solid black;
+}

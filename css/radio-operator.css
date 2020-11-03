@@ -23,31 +23,31 @@
 	opacity: 0;
 }
 .radio-enemy-x {
-	background: url(images/red-x.png);
+	background: url(../images/red-x.png);
 	background-size: 100%;
 }
 .radio-north-south {
-	background: url(images/north-south-enemy.png);
+	background: url(../images/north-south-enemy.png);
 	background-size: 100%;
 }
 .radio-east-west {
-	background: url(images/east-west-enemy.png);
+	background: url(../images/east-west-enemy.png);
 	background-size: 100%;
 }
 .radio-north-east {
-	background: url(images/north-east-enemy.png);
+	background: url(../images/north-east-enemy.png);
 	background-size: 100%;
 }
 .radio-north-west {
-	background: url(images/north-west-enemy.png);
+	background: url(../images/north-west-enemy.png);
 	background-size: 100%;
 }
 .radio-south-east {
-	background: url(images/south-east-enemy.png);
+	background: url(../images/south-east-enemy.png);
 	background-size: 100%;
 }
 .radio-south-west {
-	background: url(images/south-west-enemy.png);
+	background: url(../images/south-west-enemy.png);
 	background-size: 100%;
 }
 
