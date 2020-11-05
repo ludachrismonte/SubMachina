@@ -1,5 +1,12 @@
-#radio-operator {
+
+#radio-operator-col-left {
+	width: 60%;
 	float: left;
+}
+
+#radio-operator-col-right {
+	width: 40%;
+	float: right;
 }
 
 #radio-operator-trail {
@@ -55,8 +62,10 @@
 
 #radio-operator-controls {
 	position: relative;
-	width: 175px;
-	height: 175px;
+	width: 250px;
+	height: 250px;
+	margin-left: auto;
+	margin-right: auto;
 	padding: 6px;
 	border: 2px solid black;
 	background-color: gray;

@@ -8,12 +8,18 @@ body {
 }
 
 .title-container {
-	width: 100%;
+	width: 60%;
 	text-align: center;
 	color: white;
-	font-size: 150px;
+	font-size: 130px;
 	margin-top: 250px;
-	color: #555;
+	margin-left: 20%;
+	margin-right: 20%;
+	padding-top: 30px;
+	color: #111;
+	background: url(../images/MetalLabel.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
 }
 
 .subtitle-1-container {
@@ -21,8 +27,8 @@ body {
 	text-align: center;
 	color: white;
 	font-size: 35px;
-	margin-top: 0px;
-	color: #555;
+	margin-top: 20px;
+	color: #999;
 }
 
 .subtitle-2-container {

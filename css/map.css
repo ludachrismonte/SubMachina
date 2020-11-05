@@ -26,3 +26,14 @@
   background-color: #ccc;
   opacity: .2;
 }
+
+.map-control-button {
+  float: left;
+  height: 20px;
+  width: 100px;
+  text-align: center;
+  padding: 20px;
+  background-color: lightblue;
+  border: 3px solid black;
+  cursor: pointer;
+}

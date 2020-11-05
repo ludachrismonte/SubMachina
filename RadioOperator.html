@@ -21,21 +21,29 @@
 
     <div id="radio-operator">
 
-      <table class="map map-graphic"></table>
+      <div id="radio-operator-col-left">
+        <table class="map map-graphic"></table>
+      </div>
+
+      <div id="radio-operator-col-right">
+        <div id="radio-operator-controls">
+          <img id="radio-north" src="images/ArrowUp.png" onclick="radioMove('north')">
+          <img id="radio-east" src="images/ArrowRight.png" onclick="radioMove('east')">
+          <img id="radio-south" src="images/ArrowDown.png" onclick="radioMove('south')">
+          <img id="radio-west" src="images/ArrowLeft.png" onclick="radioMove('west')">
+        </div>
+        <div class="map-control-button" onclick="resetRadio()">Reset Radio</div>
+        <div class="map-control-button" onclick="undoRadio()">Undo</div>
+      </div>
 
       <div id="radio-operator-trail">
         <table id="radio-operator-grid"></table>
       </div>
 
-      <div id="radio-operator-controls">
-        <img id="radio-north" src="images/health.png" onclick="radioMove('north')">
-        <img id="radio-east" src="images/health.png" onclick="radioMove('east')">
-        <img id="radio-south" src="images/health.png" onclick="radioMove('south')">
-        <img id="radio-west" src="images/health.png" onclick="radioMove('west')">
-      </div>
     </div>
 
     <script src="js/Map.js" type="text/javascript"></script>
+    <script src="js/RadioOperator.js" type="text/javascript"></script>
     <script src="js/script.js" type="text/javascript"></script>
 
   </div>
